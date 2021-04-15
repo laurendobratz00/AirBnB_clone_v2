@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # a Bash script that sets up your web servers for the deployment of web_static
-if [ ! -d /data/ ]; then
- mkdir -p /data/web_static/shared/;
-fi
+apt-get update
 
-if [ ! -d /data/ ]; then
- mkdir -p /data/web_static/releases/test/;
-fi
+apt-get -y install nginx
 
-echo -e '
+mkdir -p /data/web_static/shared/;
+
+mkdir -p /data/web_static/releases/test/;
+
+echo '
 <html>
  <head>
  </head>
