@@ -5,7 +5,7 @@ from fabric.api import *
 from datetime import datetime
 env.hosts = ['34.73.89.226', '18.212.230.41']
 
-"""
+
 def do_pack():
     """ generates a .tgz archive from the contents of the web_static folder """
     local("sudo mkdir -p versions")
@@ -16,11 +16,11 @@ def do_pack():
         return filename
     else:
         return None
-"""
+
 
 def do_deploy(archive_path):
     """ distributes an archive to web servers, using the function do_deploy """
-    if not archive_path:
+    if exists(archive_path) is False:
         return False
     split_path = archive_path.split("/")[-1]
     name = '/data/web_static/releases/' + "{}".format(split_path.split('.')[0])
