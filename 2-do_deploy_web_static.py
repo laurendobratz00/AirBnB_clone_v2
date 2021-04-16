@@ -20,7 +20,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """ distributes an archive to web servers, using the function do_deploy """
-    if exists(archive_path) is False:
+    if not archive_path:
         return False
     split_path = archive_path.split("/")[-1]
     name = '/data/web_static/releases/' + "{}".format(split_path.split('.')[0])
