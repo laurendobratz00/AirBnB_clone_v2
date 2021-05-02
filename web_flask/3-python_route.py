@@ -24,7 +24,7 @@ def c(text):
         return 'C {}'.format(new_text)
 
 @app.route('/python', strict_slashes=False)
-@app.route('/python/(<text>)', strict_slashes=False)
+@app.route('/python/<path:text>', strict_slashes=False)
 def python(text=None):
     """ display 'Python' followed by the value of the text variable """
     if text is None:
