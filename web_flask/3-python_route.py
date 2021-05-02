@@ -23,6 +23,7 @@ def c(text):
         new_text = text.replace("_", " ")
         return 'C {}'.format(new_text)
 
+
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<path:text>', strict_slashes=False)
 def python(text=None):
@@ -30,8 +31,8 @@ def python(text=None):
     if text is None:
         text = 'is cool'
     else:
-        new_text = text.replace("_", " ")
-        return 'Python {}'.format(new_text)
+        text = text.replace("_", " ")
+        return ('Python' + ' ' + text)
 
 
 if __name__ == '__main__':
