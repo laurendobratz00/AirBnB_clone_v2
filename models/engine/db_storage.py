@@ -50,18 +50,14 @@ class DBStorage:
                         Base.metadata.create_all(self.__engine)
 
         def all(self, cls=None):
-                """ query on the current database session (self.__session)
-                all objects depending of the class name (argument cls);
-                returns dict """
-                self.reload()
-                for key, value in classdict.items():
-                        retdict = {}
-                        if cls is None or cls == key:
-                                for u in self.__session.query(
-                                        classdict[key]).all():
-                                        k = u.__class__.__name__ + "." + u.id
-                                        retdict[k] = u
-                        return retdict
+                all_objs = {}
+                for clss in classdict:
+                    if cls is None or cls is classdict[clss] or cls is clss:
+                            o = self.__session.query(classdict[clss]).all()
+                            for obj in o:
+                                    key = obj.__class__.__name__ + '.' + obj.id
+                                    all_objs[key] = obj
+                return (all_objs)
 
         def reload(self):
                 """ creates all tables in the database """
